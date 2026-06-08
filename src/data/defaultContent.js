@@ -1,14 +1,9 @@
-export const defaultContent = {
+const arLocale = {
   profile: {
     name: "طه أ.",
     title: "أخصائي خدمة عملاء",
     location: "اليمن",
     tagline: "متخصص في خدمة العملاء والمساندة الإدارية والعمل عن بُعد",
-    image: "",
-    email: "taha@example.com",
-    phone: "+967 XXX XXX XXX",
-    whatsapp: "",
-    linkedin: "",
     stats: [
       { value: "4+", label: "سنوات خبرة" },
       { value: "5", label: "مجالات مهارة" },
@@ -16,7 +11,6 @@ export const defaultContent = {
       { value: "AR/EN", label: "لغات العمل" },
     ],
   },
-
   about: {
     paragraphs: [
       "متخصص في خدمة العملاء والمساندة الإدارية والعمل عن بُعد، بخبرة في إدارة تواصل العملاء عبر البريد الإلكتروني ووسائل التواصل الاجتماعي والدردشة المباشرة، مع القدرة على تنظيم المهام الإدارية وصياغة المراسلات المهنية بكفاءة واحترافية.",
@@ -25,7 +19,6 @@ export const defaultContent = {
       "أؤمن أن نجاح أي شركة يعتمد على جودة التواصل مع عملائها وسرعة الاستجابة لاحتياجاتهم، وأسعى دائماً لتقديم دعم احترافي يساهم في بناء الثقة وتحقيق أهداف العمل.",
     ],
   },
-
   experience: [
     {
       id: "freelance-cs",
@@ -83,7 +76,6 @@ export const defaultContent = {
       ],
     },
   ],
-
   education: [
     {
       id: "ba-translation",
@@ -102,7 +94,6 @@ export const defaultContent = {
       note: "دراسة أساسيات المحاسبة وإدارة السجلات المالية. اكتساب مهارات التنظيم وإعداد التقارير والمتابعة الإدارية.",
     },
   ],
-
   skills: [
     {
       id: "cs",
@@ -163,7 +154,6 @@ export const defaultContent = {
       ],
     },
   ],
-
   certifications: [
     {
       id: "crm-hp",
@@ -187,12 +177,213 @@ export const defaultContent = {
       description: "مهارات إدارة المكاتب والأعمال الإدارية. تنظيم المواعيد والاجتماعات وإعداد المراسلات المهنية.",
     },
   ],
-
   contact: {
     title: "لنتواصل",
     subtitle: "متاح للعمل الحر والوظائف عن بُعد في خدمة العملاء والمساندة الإدارية",
     successMessage: "شكراً لتواصلك! سأرد عليك في أقرب وقت.",
   },
+};
 
+const enLocale = {
+  profile: {
+    name: "Taha A.",
+    title: "Customer Service Specialist",
+    location: "Yemen",
+    tagline: "Specialized in customer service, virtual assistance, and remote work",
+    stats: [
+      { value: "4+", label: "Years of experience" },
+      { value: "5", label: "Skill areas" },
+      { value: "3", label: "Certifications" },
+      { value: "AR/EN", label: "Working languages" },
+    ],
+  },
+  about: {
+    paragraphs: [
+      "Specialized in customer service, virtual assistance, and remote work, with experience managing client communication via email, social media, and live chat, plus organizing administrative tasks and drafting professional correspondence efficiently.",
+      "Strong skills in written communication, handling customer inquiries, order follow-up, and building positive relationships that improve satisfaction and user experience. Experienced in social media account management, audience engagement, and crafting professional responses that reflect brand identity.",
+      "I combine backgrounds in translation, business administration, and customer service, enabling me to handle diverse administrative and communication tasks accurately and flexibly in both Arabic and English.",
+      "I believe every company's success depends on quality client communication and fast response to their needs, and I always strive to deliver professional support that builds trust and achieves business goals.",
+    ],
+  },
+  experience: [
+    {
+      id: "freelance-cs",
+      role: "Freelance Customer Service & Social Media Manager",
+      company: "Remote freelance work",
+      period: "Dec 2025 – Present",
+      location: "",
+      highlights: [
+        "Managing communication with clients and followers across social platforms",
+        "Responding to messages and inquiries professionally, reflecting client identity and goals",
+        "Managing accounts focused on career guidance and professional development",
+        "Drafting professional messages and replies; following up on client and follower requests",
+        "Improving follower experience and increasing engagement levels",
+        "Organizing conversations and consistent follow-up for fast response and quality service",
+      ],
+    },
+    {
+      id: "mohit-cs",
+      role: "Customer Service & Sales Specialist",
+      company: "Al-Mohit Tourism & Travel",
+      period: "Jun 2024 – Present",
+      location: "Sana'a",
+      highlights: [
+        "Handling customer inquiries and helping them choose suitable services and products",
+        "Following up with leads and converting inquiries into sales opportunities",
+        "Building positive customer relationships and improving satisfaction and retention",
+        "Resolving issues and complaints professionally",
+        "Preparing and following up on customer correspondence and providing support",
+      ],
+    },
+    {
+      id: "mohit-translator",
+      role: "Translator & Content Writer",
+      company: "Al-Mohit Tourism & Travel",
+      period: "Aug 2024 – Dec 2025",
+      location: "Sana'a",
+      highlights: [
+        "Translating content between Arabic and English with accuracy and context",
+        "Writing and drafting marketing, informational, and professional correspondence",
+        "Creating SEO-friendly content",
+        "Reviewing and editing texts for quality and clarity",
+      ],
+    },
+    {
+      id: "seeds-warehouse",
+      role: "Warehouse & Procurement Officer",
+      company: "Seeds Education Institute",
+      period: "Jun 2021 – Jun 2024",
+      location: "Sana'a",
+      highlights: [
+        "Managing inventory, procurement, and material movement",
+        "Communicating with suppliers; tracking orders and invoices",
+        "Organizing inventory-related data and records",
+        "Contributing to operational efficiency and reducing errors",
+      ],
+    },
+  ],
+  education: [
+    {
+      id: "ba-translation",
+      degree: "B.A. in Translation",
+      school: "Faculty of Languages, Sana'a University",
+      period: "2018 – 2024",
+      location: "Sana'a",
+      note: "Written and oral translation between Arabic and English. Professional communication, writing, and content drafting skills.",
+    },
+    {
+      id: "accounting-diploma",
+      degree: "Financial Accounting Diploma",
+      school: "Seeds Education Institute",
+      period: "2023",
+      location: "Sana'a",
+      note: "Accounting fundamentals and financial record management. Organization, reporting, and administrative follow-up skills.",
+    },
+  ],
+  skills: [
+    {
+      id: "cs",
+      title: "Customer Service & Communication",
+      items: [
+        "Customer service & first-line technical support",
+        "Managing inquiries and complaints",
+        "Lead follow-up",
+        "Email and live chat management",
+        "Building positive customer relationships",
+        "Professional written communication",
+      ],
+    },
+    {
+      id: "va",
+      title: "Virtual Assistance & Administration",
+      items: [
+        "Email management",
+        "Scheduling & calendar management",
+        "File and document organization",
+        "Data entry and updates",
+        "Reports and periodic follow-ups",
+        "Daily administrative task coordination",
+      ],
+    },
+    {
+      id: "social",
+      title: "Social Media Management",
+      items: [
+        "Messages and comments management",
+        "Audience engagement",
+        "Account monitoring and content organization",
+        "Professional reply drafting",
+      ],
+    },
+    {
+      id: "writing",
+      title: "Writing & Translation",
+      items: [
+        "Arabic – English translation",
+        "Marketing content writing",
+        "Professional correspondence",
+        "Informational content writing",
+        "Editing and proofreading",
+        "SEO fundamentals",
+      ],
+    },
+    {
+      id: "tools",
+      title: "Software & Tools",
+      items: [
+        "Microsoft Office (Word, Excel, PowerPoint)",
+        "Google Workspace (Docs, Sheets, Drive)",
+        "Canva",
+        "Gmail & Outlook",
+        "WhatsApp Business",
+        "Remote task & collaboration tools",
+      ],
+    },
+  ],
+  certifications: [
+    {
+      id: "crm-hp",
+      title: "Customer Relationship Management (CRM)",
+      issuer: "HP Foundation",
+      date: "September 2025",
+      description: "CRM principles and improving customer experience. Communication, follow-up, and problem-solving skills.",
+    },
+    {
+      id: "digital-marketing",
+      title: "Digital Marketing Fundamentals",
+      issuer: "eMarketing Institute",
+      date: "November 2025",
+      description: "Online marketing and social platforms. Content creation, content marketing, and digital KPIs.",
+    },
+    {
+      id: "executive-secretary",
+      title: "Executive Secretary Diploma",
+      issuer: "Seeds Education Institute",
+      date: "July 2021",
+      description: "Office and administrative business skills. Scheduling meetings and drafting professional correspondence.",
+    },
+  ],
+  contact: {
+    title: "Let's connect",
+    subtitle: "Available for freelance and remote roles in customer service and virtual assistance",
+    successMessage: "Thank you for reaching out! I'll get back to you soon.",
+  },
+};
+
+export const defaultContent = {
+  shared: {
+    image: "",
+    email: "taha@example.com",
+    phone: "+967 XXX XXX XXX",
+    whatsapp: "",
+    linkedin: "",
+    certImages: {
+      "crm-hp": "",
+      "digital-marketing": "",
+      "executive-secretary": "",
+    },
+  },
+  ar: arLocale,
+  en: enLocale,
   admin: { password: "admin123" },
 };

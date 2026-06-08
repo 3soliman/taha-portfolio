@@ -1,22 +1,24 @@
 import { motion } from "framer-motion";
 import { FiBookOpen } from "react-icons/fi";
-import { useContent } from "../context/ContentContext";
+import { useLanguage } from "../context/LanguageContext";
+import { useLocalized } from "../hooks/useLocalized";
 import SectionHeader from "./SectionHeader";
 
 export default function Education() {
-  const { content } = useContent();
+  const { t } = useLanguage();
+  const { education } = useLocalized();
 
   return (
     <section id="education" className="section section-alt">
       <div className="container">
         <SectionHeader
           num="03"
-          eyebrow="المؤهلات"
-          title="التعليم"
-          desc="أساس أكاديمي في الترجمة والمحاسبة يدعم العمل الإداري والتواصلي"
+          eyebrow={t("sections.education.eyebrow")}
+          title={t("sections.education.title")}
+          desc={t("sections.education.desc")}
         />
         <div className="edu-grid">
-          {content.education.map((edu, i) => (
+          {education.map((edu, i) => (
             <motion.article
               key={edu.id}
               className="card edu-card card-lift"

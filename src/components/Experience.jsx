@@ -1,21 +1,23 @@
 import { motion } from "framer-motion";
-import { useContent } from "../context/ContentContext";
+import { useLanguage } from "../context/LanguageContext";
+import { useLocalized } from "../hooks/useLocalized";
 import SectionHeader from "./SectionHeader";
 
 export default function Experience() {
-  const { content } = useContent();
+  const { t } = useLanguage();
+  const { experience } = useLocalized();
 
   return (
     <section id="experience" className="section">
       <div className="container">
         <SectionHeader
           num="02"
-          eyebrow="المسيرة"
-          title="الخبرات العملية"
-          desc="مسار مهني متنوع في خدمة العملاء، المبيعات، الترجمة، والإدارة"
+          eyebrow={t("sections.experience.eyebrow")}
+          title={t("sections.experience.title")}
+          desc={t("sections.experience.desc")}
         />
         <div className="timeline">
-          {content.experience.map((exp, i) => (
+          {experience.map((exp, i) => (
             <motion.div
               key={exp.id}
               className="exp-item"

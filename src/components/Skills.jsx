@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FiHeadphones, FiClipboard, FiInstagram, FiEdit3, FiMonitor } from "react-icons/fi";
-import { useContent } from "../context/ContentContext";
+import { useLanguage } from "../context/LanguageContext";
+import { useLocalized } from "../hooks/useLocalized";
 import SectionHeader from "./SectionHeader";
 
 const skillMeta = {
@@ -12,19 +13,20 @@ const skillMeta = {
 };
 
 export default function Skills() {
-  const { content } = useContent();
+  const { t } = useLanguage();
+  const { skills } = useLocalized();
 
   return (
     <section id="skills" className="section">
       <div className="container">
         <SectionHeader
           num="04"
-          eyebrow="القدرات"
-          title="المهارات"
-          desc="مجموعة مهارات عملية تغطي التواصل، الإدارة، والمحتوى الرقمي"
+          eyebrow={t("sections.skills.eyebrow")}
+          title={t("sections.skills.title")}
+          desc={t("sections.skills.desc")}
         />
         <div className="skills-grid">
-          {content.skills.map((group, i) => {
+          {skills.map((group, i) => {
             const meta = skillMeta[group.id] || { icon: FiMonitor, cls: "skill-icon-tools" };
             const Icon = meta.icon;
             return (

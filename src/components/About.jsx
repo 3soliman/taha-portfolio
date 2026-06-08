@@ -1,19 +1,21 @@
 import { motion } from "framer-motion";
-import { useContent } from "../context/ContentContext";
+import { useLanguage } from "../context/LanguageContext";
+import { useLocalized } from "../hooks/useLocalized";
 import SectionHeader from "./SectionHeader";
 
 export default function About() {
-  const { content } = useContent();
-  const paragraphs = content.about.paragraphs;
+  const { t } = useLanguage();
+  const { about } = useLocalized();
+  const paragraphs = about.paragraphs;
 
   return (
     <section id="about" className="section section-alt">
       <div className="container">
         <SectionHeader
           num="01"
-          eyebrow="من أنا"
-          title="نبذة مهنية"
-          desc="خبرة تجمع بين خدمة العملاء، الترجمة، والإدارة الرقمية"
+          eyebrow={t("sections.about.eyebrow")}
+          title={t("sections.about.title")}
+          desc={t("sections.about.desc")}
         />
         <div className="about-grid">
           <motion.div
