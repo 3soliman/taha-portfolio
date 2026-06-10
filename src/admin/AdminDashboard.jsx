@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { Navigate, Link } from "react-router-dom";
-import { FiSave, FiLogOut, FiRefreshCw } from "react-icons/fi";
+import { FiSave, FiLogOut, FiRefreshCw, FiDownload, FiUpload, FiCloud } from "react-icons/fi";
 import { useAuth } from "../context/AuthContext";
 import { useContent } from "../context/ContentContext";
+import { toPublicJson } from "../utils/contentMerge";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import ThemeToggle from "../components/ThemeToggle";
 
 export default function AdminDashboard() {
   const { isAuthenticated, logout } = useAuth();
-  const { content, updateShared, updateLocale, replaceLocale, reset, setPassword } = useContent();
+  const { content, replaceContent, reset, setPassword, downloadForPublish, importFromFile, reloadRemote } = useContent();
   const { t, lang } = useLanguage();
   const [tab, setTab] = useState(lang);
   const locale = content[tab];
@@ -35,15 +36,37 @@ export default function AdminDashboard() {
 
   if (!isAuthenticated) return <Navigate to="/admin" replace />;
 
-  const save = () => {
-    updateShared(shared);
-    updateLocale(tab, "profile", profile);
-    replaceLocale(tab, "about", { paragraphs: about });
-    updateLocale(tab, "contact", contact);
-    if (newPass) setPassword(newPass);
+  const save = (andDownload = false) => {
+    const next = {
+      ...content,
+      shared: { ...shared, certImages: { ...shared.certImages } },
+      [tab]: {
+        ...content[tab],
+        profile,
+        about: { paragraphs: about },
+        contact,
+      },
+      admin: newPass ? { password: newPass } : content.admin,
+    };
+    replaceContent(next);
     setSaved(true);
     setNewPass("");
     setTimeout(() => setSaved(false), 2000);
+    if (andDownload) {
+      const blob = new Blob([toPublicJson(next)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "content.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  };
+
+  const handleReloadRemote = async () => {
+    const ok = await reloadRemote();
+    alert(ok ? t("admin.reloadOk") : t("admin.reloadFail"));
+    if (ok) switchTab(tab);
   };
 
   const profileFields = ["name", "title", "location", "tagline"];
@@ -72,7 +95,8 @@ export default function AdminDashboard() {
           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", alignItems: "center" }}>
             <LanguageSwitcher />
             <ThemeToggle />
-            <button type="button" className="btn btn-primary" onClick={save}><FiSave /> {saved ? t("admin.saved") : t("admin.save")}</button>
+            <button type="button" className="btn btn-primary" onClick={() => save(false)}><FiSave /> {saved ? t("admin.saved") : t("admin.save")}</button>
+            <button type="button" className="btn btn-outline" onClick={() => save(true)}><FiDownload /> {t("admin.saveAndDownload")}</button>
             <Link to="/" className="btn btn-outline">{t("admin.viewSite")}</Link>
             <button type="button" className="btn btn-ghost" onClick={() => { logout(); }}><FiLogOut /> {t("admin.logout")}</button>
           </div>
@@ -153,6 +177,20 @@ export default function AdminDashboard() {
               <input className="input" value={contact[key] || ""} onChange={(e) => setContact((c) => ({ ...c, [key]: e.target.value }))} />
             </div>
           ))}
+        </div>
+
+        <div className="card" style={{ padding: "1.5rem", marginBottom: "1rem", borderColor: "rgba(99,102,241,0.35)" }}>
+          <h2 style={{ fontSize: "1rem", marginTop: 0 }}>{t("admin.publishTitle")}</h2>
+          <p style={{ fontSize: "0.85rem", color: "var(--muted)", marginTop: 0 }}>{t("admin.publishNote")}</p>
+          <p style={{ fontSize: "0.8rem", color: "var(--primary)", fontWeight: 600 }}>{t("admin.publishSteps")}</p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginTop: "0.75rem" }}>
+            <button type="button" className="btn btn-primary" onClick={downloadForPublish}><FiDownload /> {t("admin.downloadJson")}</button>
+            <label className="btn btn-outline" style={{ cursor: "pointer", margin: 0 }}>
+              <FiUpload /> {t("admin.importJson")}
+              <input type="file" accept="application/json,.json" hidden onChange={(e) => importFromFile(e.target.files?.[0])} />
+            </label>
+            <button type="button" className="btn btn-ghost" onClick={handleReloadRemote}><FiCloud /> {t("admin.reloadRemote")}</button>
+          </div>
         </div>
 
         <div className="card" style={{ padding: "1.5rem", marginBottom: "1rem" }}>

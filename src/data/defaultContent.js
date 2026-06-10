@@ -375,9 +375,9 @@ const enLocale = {
 export const defaultContent = {
   shared: {
     image: tahaPhoto,
-    email: "taha@example.com",
-    phone: "+967 XXX XXX XXX",
-    whatsapp: "",
+    email: "taha775155@gmail.com",
+    phone: "+967775155972",
+    whatsapp: "967775155972",
     linkedin: "",
     certImages: {
       "crm-hp": "",
