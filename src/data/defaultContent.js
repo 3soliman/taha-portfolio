@@ -1,3 +1,5 @@
+import tahaPhoto from "../assets/taha.jpeg";
+
 const arLocale = {
   profile: {
     name: "طه أ.",
@@ -372,7 +374,7 @@ const enLocale = {
 
 export const defaultContent = {
   shared: {
-    image: "",
+    image: tahaPhoto,
     email: "taha@example.com",
     phone: "+967 XXX XXX XXX",
     whatsapp: "",

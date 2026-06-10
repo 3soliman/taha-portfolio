@@ -11,7 +11,7 @@ function migrateFlat(data) {
   const { profile, about, experience, education, skills, certifications, contact, admin } = data;
   return {
     shared: {
-      image: profile?.image ?? defaultContent.shared.image,
+      image: profile?.image || defaultContent.shared.image,
       email: profile?.email ?? defaultContent.shared.email,
       phone: profile?.phone ?? defaultContent.shared.phone,
       whatsapp: profile?.whatsapp ?? defaultContent.shared.whatsapp,
@@ -45,6 +45,7 @@ function mergeContent(saved) {
     shared: {
       ...defaultContent.shared,
       ...base.shared,
+      image: base.shared?.image || defaultContent.shared.image,
       certImages: { ...defaultContent.shared.certImages, ...base.shared?.certImages },
     },
     ar: {
