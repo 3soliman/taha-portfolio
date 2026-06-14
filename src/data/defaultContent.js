@@ -2,7 +2,7 @@ import tahaPhoto from "../assets/taha.jpeg";
 
 const arLocale = {
   profile: {
-    name: "طه أ.",
+    name: "طه الدعيس",
     title: "أخصائي خدمة عملاء",
     location: "اليمن",
     tagline: "متخصص في خدمة العملاء والمساندة الإدارية والعمل عن بُعد",
@@ -188,7 +188,7 @@ const arLocale = {
 
 const enLocale = {
   profile: {
-    name: "Taha A.",
+    name: "Taha Al Duais",
     title: "Customer Service Specialist",
     location: "Yemen",
     tagline: "Specialized in customer service, virtual assistance, and remote work",
